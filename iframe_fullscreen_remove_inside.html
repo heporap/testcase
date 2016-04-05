@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html lang="ja">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>fullscreen</title>
+
+<style>
+html,body,p{margin:0;padding:0;}
+</style>
+</head>
+<body>
+
+<div id="fs" style="width:100%;height:100px;background-color:green;color:black;">
+	<p><input type="button" value="fullscreen" id="run"></p>
+	<p><input type="button" value="test" id="test"></p>
+	<p id="output"></p>
+</div>
+
+<script>
+
+function getElement(id){
+	return document.getElementById(id);
+}
+
+document.addEventListener('DOMContentLoaded', function(){
+	getElement('run').addEventListener('click', function(){
+		pageEnterFullScreen(getElement('fs'));
+	}, false);
+	
+	getElement('test').addEventListener('click', removeIframeInParent, false);
+	
+}, false);
+
+
+function removeIframeInParent() {
+	pageExitFullScreen();
+	parent.removeIframe();
+}
+
+function pageExitFullScreen(){
+	
+	if( document.exitFullscreen ){
+		document.exitFullscreen();
+	
+	}else if(document.cancelFullScreen ){
+		document.cancelFullScreen();
+	
+	}else if( document.msCancelFullScreen ) {
+		document.msCancelFullScreen();
+	
+	}else if( document.msExitFullscreen ) {
+		document.msExitFullscreen();
+	
+	}else if(document.webkitCancelFullScreen ){
+		document.webkitCancelFullScreen();
+		
+	}else if(document.mozCancelFullScreen ){
+		document.mozCancelFullScreen();
+	
+	}
+	
+}
+
+function pageEnterFullScreen(element){
+	
+	if( element.requestFullscreen ){
+		element.requestFullscreen();
+		
+	}else if( element.msRequestFullscreen ) {
+		element.msRequestFullscreen();
+		
+	}else if(element.mozRequestFullScreen ){
+		element.mozRequestFullScreen();
+	
+	}else if(element.webkitRequestFullscreen ){
+		element.webkitRequestFullscreen();
+		
+	}
+	
+}
+
+</script>
+</body>
+</html>
