@@ -13,6 +13,10 @@ div {
 div:-webkit-full-screen-ancestor:not(iframe){
 	background-color: red;
 }
+div:-webkit-full-screen-ancestor:not(iframe):before {
+	content: "style 'div:-webkit-full-screen-ancestor:not(iframe)' applied.";
+	display: block;
+}
 
 </style>
 </head>
